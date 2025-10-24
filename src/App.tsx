@@ -1,28 +1,45 @@
-import { useState } from 'react'
+import './App.css'
 
-function App() {
+const tasks = [
+  {
+    id: 1,
+    title: 'Купить продукты на неделю',
+    isDone: false,
+    addedAt: '1 сентября',
+  },
+  {
+    id: 2,
+    title: 'Полить цветы',
+    isDone: true,
+    addedAt: '2 сентября',
+  },
+  {
+    id: 3,
+    title: 'Сходить на тренировку',
+    isDone: false,
+    addedAt: '3 сентября',
+  },
+]
 
-  const [tasks, setTasks] = useState([
-    { id: 1, title: 'Купить продукты на неделю', isDone: false },
-    { id: 2, title: 'Полить цветы', isDone: true },
-    { id: 3, title: 'Сходить на тренировку', isDone: false },
-  ])
-
+export function App() {
   return (
     <>
-      <h1>Список дел</h1>
       <ul>
         { tasks.map((task) => {
           return (
             <li key={ task.id }>
-              <div>{ task.title }</div>
-              <input
-                type="checkbox"
-                checked={ task.isDone }
-                onChange={ () => {
-                  setTasks(
-                    tasks.map(t => t.id === task.id ? { ...t, isDone: !t.isDone } : t))
-                } } />
+              <p>
+                <b>Заголовок:</b>
+                { task.title }
+              </p>
+              <p>
+                <b>Статус:</b>
+                <input type="checkbox" checked={ task.isDone } onChange={ () => task.isDone = !task.isDone } />
+              </p>
+              <p>
+                <b>Дата создания задачи:</b>
+                { task.addedAt ? task.addedAt : '' }
+              </p>
             </li>
           )
         }) }
@@ -30,5 +47,3 @@ function App() {
     </>
   )
 }
-
-export default App
