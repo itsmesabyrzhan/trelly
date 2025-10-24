@@ -22,6 +22,15 @@ const tasks = [
 ]
 
 export function App() {
+
+  if (tasks === null) {
+    return <span>Загрузка...</span>
+  }
+
+  if (tasks.length === 0) {
+    return <span>Задачи отсутствуют</span>
+  }
+
   return (
     <>
       <ul>
