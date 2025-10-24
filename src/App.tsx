@@ -24,11 +24,11 @@ const tasks = [
 export function App() {
 
   if (tasks === null) {
-    return <span>Загрузка...</span>
+    return <h2>Загрузка...</h2>
   }
 
   if (tasks.length === 0) {
-    return <span>Задачи отсутствуют</span>
+    return <h2>Задачи отсутствуют</h2>
   }
 
   return (
@@ -38,15 +38,20 @@ export function App() {
           return (
             <li key={ task.id }>
               <p>
-                <b>Заголовок:</b>
-                { task.title }
+                <b>Заголовок: </b>
+                <span
+                  style={ {
+                    textDecoration: task.isDone ? 'line-through' : 'none',
+                  } }>
+                  { task.title }
+                </span>
               </p>
               <p>
-                <b>Статус:</b>
+                <b>Статус: </b>
                 <input type="checkbox" checked={ task.isDone } onChange={ () => task.isDone = !task.isDone } />
               </p>
               <p>
-                <b>Дата создания задачи:</b>
+                <b>Дата создания задачи: </b>
                 { task.addedAt ? task.addedAt : '' }
               </p>
             </li>
