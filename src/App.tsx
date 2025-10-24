@@ -22,7 +22,29 @@ const tasks = [
     addedAt: '3 сентября',
     priority: 1,
   },
+  {
+    id: 4,
+    title: 'Срочно отправить рабочий отчет',
+    isDone: false,
+    addedAt: '4 сентября',
+    priority: 4,
+  },
+  {
+    id: 5,
+    title: 'Заплатить за коммунальные услуги',
+    isDone: false,
+    addedAt: '3 сентября',
+    priority: 3,
+  },
 ]
+
+const priorityColors: Record<number, string> = {
+  0: '#ffffff',
+  1: '#ffd7b5',
+  2: '#ffb38a',
+  3: '#ff9248',
+  4: '#ff6700',
+}
 
 export function App() {
 
@@ -41,13 +63,9 @@ export function App() {
           return (
             <li
               key={ task.id }
-              style={
-                task.priority >= 2
-                  ? {
-                    color: '#000',
-                    backgroundColor: 'rgba(255, 255, 255, 0.87)',
-                  }
-                  : {} }
+              style={ {
+                backgroundColor: priorityColors[task.priority],
+              } }
             >
               <p>
                 <b>Заголовок: </b>
