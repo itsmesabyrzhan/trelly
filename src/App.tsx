@@ -1,4 +1,5 @@
 import './App.css'
+import { useState } from 'react'
 
 const tasks = [
   {
@@ -48,6 +49,8 @@ const priorityColors: Record<number, string> = {
 
 export function App() {
 
+  const [selectedTaskId, setSelectedTaskId] = useState<number>(0)
+
   if (tasks === null) {
     return <h2>Загрузка...</h2>
   }
@@ -65,8 +68,11 @@ export function App() {
               key={ task.id }
               style={ {
                 backgroundColor: priorityColors[task.priority],
+                border: selectedTaskId === task.id ? '3px solid dodgerblue' : '3px solid transparent',
               } }
-              onClick={ () => alert(`ID задачи: ${ task.id }`) }
+              onClick={ () => {
+                setSelectedTaskId(prevId => (prevId === task.id ? 0 : task.id))
+              } }
             >
               <p>
                 <b>Заголовок: </b>
