@@ -66,13 +66,15 @@ export function App() {
               style={ {
                 backgroundColor: priorityColors[task.priority],
               } }
+              onClick={ () => alert(`ID задачи: ${ task.id }`) }
             >
               <p>
                 <b>Заголовок: </b>
                 <span
                   style={ {
                     textDecoration: task.isDone ? 'line-through' : 'none',
-                  } }>
+                  } }
+                >
                   { task.title }
                 </span>
               </p>
