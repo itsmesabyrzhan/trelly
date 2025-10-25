@@ -61,6 +61,16 @@ export function App() {
 
   return (
     <>
+      <button
+        onClick={ () => setSelectedTaskId(0) }
+        style={ {
+          color: '#292929',
+          backgroundColor: '#f1f1f1',
+          marginTop: '50px',
+        } }
+      >
+        Сбросить выделение
+      </button>
       <ul>
         { tasks.map((task) => {
           return (
@@ -69,6 +79,8 @@ export function App() {
               style={ {
                 backgroundColor: priorityColors[task.priority],
                 border: selectedTaskId === task.id ? '3px solid dodgerblue' : '3px solid transparent',
+                transitionDuration: '0.3s',
+                cursor: 'pointer',
               } }
               onClick={ () => {
                 setSelectedTaskId(prevId => (prevId === task.id ? 0 : task.id))
